@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+		 
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html , body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.box {
+				max-width: 768px;
+				height: 100vh;
+				margin: 0 auto;
+			}
+			.inner {
+				position: relative;
+				width: 100%;
+				height: 256px;
+				overflow: hidden;				
+			}
+			.inner img {
+				width: 100%;
+				height: 100%;
+				
+			}
+			ul {
+				display: flex;
+				white-space: nowrap;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 1000%;
+				height: 100%;
+				list-style: none;				
+			}
+			ol {
+				display: flex;
+				justify-content: center;
+				position: absolute;
+				bottom: 6px;
+			}
+				
+			ol li{
+				width: 5px;
+				height: 5px;
+				background-color: #FFFFFF;
+				margin-left: 5px;
+			}
+			ol .current {
+				background-color: red;
+				
+			}
+			#arr {
+				display: none;
+				
+			}
+			#arr span {
+				position: absolute;
+				left: 0;
+				top: 50%;
+				background: #FFFFFF;
+				cursor: pointer;
+				opacity: 0.5;
+			}
+			
+			    #arr #right {
+			      right: 5px;
+			      left: auto;
+			    }
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<div class="inner">
+				<ul>
+					<li><a href="#"> <img src="imgs/1.jpg" alt="" /></a></li>
+					<li><a href="#"> <img src="imgs/2.jpg" alt="" /></a></li>
+					<li><a href="#"> <img src="imgs/3.jpg" alt="" /></a></li>
+					<li><a href="#"> <img src="imgs/4.jpg" alt="" /></a></li>
+					<li><a href="#"> <img src="imgs/5.jpg" alt="" /></a></li>
+				</ul>
+				<ol class="bar">
+					
+				</ol>
+				<div id="arr">
+					<span id="left">&gt;</span>
+					<span id="right">&lt;</span>
+				</div>
+			</div>
+		</div>
+		<script>
+			var box = document.getElementById('box');
+			var inner  = box.children[0];
+			var ulinner = inner.children[0];
+			var lists  = ulinner.children;
+			var olinner = inner.children[1];
+			var imgWidth = "100%";
+			var pic  = 0;
+			
+			for(var i = 0 ; i< lists.length ; i++){
+				var lic = document.createElement('li');
+				
+				olinner.appendChild(lic);
+				lic.setAttribute("index",i);
+				lic.onclick = ()=>{
+					for(var j = 0;j<olinner.children.length;j++){
+						olinner.children[j].removeAttribute('class');
+					
+					}	
+					lic.className = "current";
+					pic = lic.getAttribute('index');
+					console.log(pic);
+					imgWidth = (-pic*100).toString().concat('%');
+					// animate(ulinner,imgWidth)
+					console.log(imgWidth);
+				}
+			}
+		</script>
+	</body>
+</html>

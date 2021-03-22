@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+   <link href="todo.css" rel="stylesheet" />
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef} = React; 
+
+function Title(){
+  return <div className="title"><h1>todos</h1></div>
+}
+
+function Add(props){
+  let [val,setVal] = useState("");
+  let {addData} = props; 
+  return (<div id="create-todo">
+          <input 
+            id="new-todo" 
+            placeholder="What needs to be done?" 
+            autoComplete="off" 
+            type="text" 
+            value={val}
+            onChange={({target})=>{
+              setVal(target.value);
+            }} 
+            onKeyDown={({keyCode})=>{
+              if(keyCode == 13){
+                 addData(val);
+                 setVal("");
+              }
+            }}
+          />
+      </div>)
+}
+
+function TodoList(props){
+  let {data} = props;
+  return (<ul id="todo-list">
+        {
+          data.map(item=>{
+            return <Li 
+                {...props}
+                key={item.id}
+                data={item}
+            />
+          })
+        }
+  </ul>);
+}
+
+function Li(props) {
+    let {data,remove,changeDone} = props;
+    let {id,done,txt} = data;
+    let [edit,setEdit] = useState(false);
+    let editInput = useRef();
+    useEffect(()=>{
+        if(edit){
+          editInput.current.focus();
+        }
+    },[edit]);
+    return (
+        <li className={edit?"editing":""}>
+            <div className={"todo "+(done?"done":"")}>
+                <div className="display">
+                    <input 
+                        className="check" 
+                        type="checkbox"
+                        checked={done}
+                        onChange={({target})=>{
+                          changeDone(id,target.checked);
+                        }}
+                    />
+                    <div 
+                        className="todo-content"
+                        onDoubleClick = {()=>{
+                          setEdit(true);
+                        }}
+                    >{txt}</div>
+                    <span 
+                        className="todo-destroy"
+                        onClick={()=>{
+                           remove(id); 
+                        }}
+                    ></span>
+                </div>
+                <div className="edit">
+                    <input 
+                        className="todo-input" 
+                        type="text" 
+                        onBlur={()=>{
+                          setEdit(false);
+                        }}
+                        value={txt}
+                        onChange={({target})=>{
+
+                        }}
+                        ref = {editInput}
+                    />
+                </div>
+            </div>
+        </li>)
+}
+
+function Stats(props){
+  let {data} = props;
+  let unDoneData = data.filter(item=>!item.done);
+  let doneData = data.filter(item=>item.done);
+  return (<div id="todo-stats">
+    <span className="todo-count">
+      <span className="number">{unDoneData.length}</span>
+      <span className="word">项待完成</span>
+    </span>
+    <span className="todo-clear">
+      <a href="#">Clear <span>{doneData.length}</span> 已完成事项</a>
+    </span>
+  </div>)
+}
+function TodoApp(){
+  let [data,setData] = useState([
+      {
+        id: 0,
+        txt: "这是内容",
+        done: false
+      },{
+        id: 1,
+        txt: "这是内容-2",
+        done: true
+      },{
+        id: 2,
+        txt: "这是内容-3",
+        done: true
+      }
+  ]);
+  // 添加数据
+  let addData = (txt)=>{
+      data.push({
+          id: Date.now(),
+          txt,
+          done: false
+      });
+      setData([...data]);
+  };
+  // 删除数据
+  let remove = (id)=>{
+    setData(data.filter(item=>{
+      return item.id != id
+    }));
+  };
+  // 切换选中
+  let changeDone = (id,done)=>{
+    data.forEach(item => {
+        if(item.id == id){
+          item.done = done;
+        }
+    });
+    setData([...data]);
+  };
+  return (<div id="todoapp">
+          <Title />
+        <div className="content">
+            <Add
+              addData = {addData}
+             />
+            <TodoList 
+              data={data}
+              remove={remove}
+              changeDone = {changeDone}
+            />
+            <Stats data={data} />
+        </div>
+  </div>)
+}
+ReactDOM.render(
+    <TodoApp />,
+    document.querySelector("#root")
+);
+</script>    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+    <style>
+        dl {
+            margin: 0;
+        }
+        .friend-list {
+            border: 1px solid #000000;
+            width: 200px;
+        }
+        .friend-group dt {
+            padding: 10px;
+            background-color: rgb(64, 158, 255);
+            font-weight: bold;
+        }
+        .friend-group dd {
+            padding: 10px;
+            display: none;
+        }
+        .friend-group.expanded dd {
+            display: block;
+        }
+        .friend-group dd.checked {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    
+</div>
+<script type="text/babel">
+function App(){
+    let [val,setVal] = React.useState("");
+    return (<div>
+        <input 
+            type="text" 
+            value={val} 
+            onChange={({target})=>{
+                setVal(target.value);
+            }}
+        />
+        <p>这前input的value是：{val}</p>
+    </div>)
+}
+ReactDOM.render(
+    <App />, 
+    document.querySelector("#root")
+);
+</script>      
+</body>
+</html>

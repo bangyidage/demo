@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Document</title>
+ <style>
+ #my-banner{
+  overflow:hidden;
+  width:400px;
+  height:300px;
+  margin:auto;
+ }
+ #banner,#my-banner{
+  display:flex; 
+  flex-direction:row;
+ }
+ #my-banner .li{
+  width:400px;
+  height:300px;
+  font-size: 20px;
+  background-color: pink;
+ }
+ .lii {
+	 background-color: red;
+	 color: white;
+ }
+ 
+ </style>
+</head>
+<body>
+ <div id="my-banner">
+ <div id="banner">
+	<div class="li">1</div>
+	<div class="li">2</div>
+	<div class="li">3</div>
+	<div class="li">4</div>
+ </div>
+ <div id="back">
+	 <div class="li lii">5</div>
+ </div>
+</div>
+</body>
+ 
+<script>
+console.log(banner)
+ banner.style="position:relative;left:0px;";
+ back.style="position:relative;left:0px;";
+ setInterval(moveli,100);
+ var fleft,bleft;
+ function moveli(){
+ fleft = parseInt(banner.style.left);
+ bleft = parseInt(back.style.left);
+ if(fleft == -1600){
+  banner.style.left = 400+"px";
+  fleft = parseInt(banner.style.left);
+ }
+ if(bleft == -2000) {
+  back.style.left = 0+"px";
+  bleft = parseInt(back.style.left);
+ }
+ banner.style.left = (fleft-10)+"px";
+ back.style.left = (bleft-10)+"px";
+ }
+</script>
+</html>

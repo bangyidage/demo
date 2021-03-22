@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 插值表达式
+        /*
+            表达式: 产生值的一组代码的集合
+        */
+        let data = [
+            <li key={1}>第一条数据</li>,
+            <li key={2}>第二条数据</li>,
+            <li key={3}>第三条数据</li>
+        ];
+        let data2 = {
+            name: "KKB",
+            a: 8
+        }
+        let name = "KKB";
+        let inner = <ul>1{data}1</ul>;
+        console.log(data2.name)
+        console.log(Object.keys(data2))
+        let inner2 = <ul>{Object.keys(data2).map((item) => {
+
+            return <li key={item}>{item}:{data2[item]}</li>
+        })}</ul>;
+        ReactDOM.render(
+            <div>
+                {inner}
+                {inner2}
+            </div>,
+            document.querySelector("#root")
+        );
+    </script>
+</body>
+
+</html>

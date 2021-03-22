@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		p {
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+		}
+
+		#a {
+			position: fixed;
+		}
+	</style>
+</head>
+
+<body>
+	<p>1</p>
+	<p>1</p>
+	<p id="a">id</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+	<p>1</p>
+
+	<script>
+		var l = document.getElementById('a');
+		window.onload = function () {
+			window.onscroll = function () {
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				console.log(scrollTop);
+				if (scrollTop > 300) {
+					l.style.top = 0;
+				}
+				else {
+					l.style.top = null;
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>

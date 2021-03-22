@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script>
+			
+			function countDown (time){
+				let nowTime = +new Date()
+				let inputTime =+ new Date(time)
+				let times = (inputTime - nowTime) / 1000
+				let d  = parseInt(times / 60 /60 /24)
+				d = (d < 10 ? ('0' +d):(d))
+				let h = parseInt(times/60/60%24)
+				h  = (h < 10?('0'+h):(h))
+				let m = parseInt(times/60%60)
+				m = (m<10?('0'+m):(m))
+				let s = parseInt(times%60)
+				s = (s<10?'0'+s:s)
+				let a =(d+'天'+h+'时'+m+'分'+s+'秒')
+			
+				return a
+			}
+			 let time = setInterval(()=>{
+				hasTime = countDown('2021-3-17 18:00:00')
+				 document.getElementById('root').innerText = hasTime
+			},1000)
+			
+			
+		</script>
+	</body>
+</html>

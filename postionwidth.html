@@ -1,0 +1,49 @@
+<!DOCTYPE html5>
+<html>
+	<head>
+		<title>12345678i32123456</title>
+		<style type="text/css">
+			div {
+				border: 1px solid pink;
+			}
+			.box1 {
+				width: 400px;
+				height: 18.75rem;
+				background: chartreuse;
+				z-index: 2;
+			}
+			.box2 {
+				position: relative;
+				width: 300px;
+				height: 20px;
+				background-color: palegoldenrod;
+				z-index: 1;
+			}
+			.box2-wrap {
+				width: 200px;
+				height: 6.25rem;
+			}
+			.box2-wrap-wrap {
+				position: absolute;
+				left: 0;
+				top: -1.25rem;
+				width: 100%;
+				height: 50%;
+				z-index: -100;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box1">
+			box1
+		</div>
+		<div class="box2">
+			box2
+			<div class="box2-wrap">
+				
+				<div class="box2-wrap-wrap">1</div>
+				
+			</div>
+		</div>
+	</body>
+</html>

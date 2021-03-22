@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <style>
+            .pay_list_c1,.pay_list_c2 {
+                width: 24px;
+                height: 18px;
+                float: left;
+                padding-top: 3px;
+                cursor: pointer;
+                text-align: center;
+                margin-right: 10px;
+                background-image: url(inputradio.gif);
+                background-repeat: no-repeat;
+                background-position: -24px 0;
+                }
+                .radioclass {
+                opacity: 0;
+                cursor: pointer;
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+                filter: alpha(opacity=0);
+                }
+                .on {
+                background-position: 0 0;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <span class="pay_list_c1 on">
+            <input type="radio" checked="checked" name="paylist" class="radioclass">男
+        </span>
+        <span class="pay_list_c2">
+            <input type="radio"  name="paylist" class="radioclass">女
+        </span>
+    </div>
+    
+    </body>
+    <script>
+        $(".pay_list_c2").on("click",function(){
+          $(this).addClass("on").siblings().removeClass("on");
+        })  
+        $(".pay_list_c1").on("click",function(){
+          $(this).addClass("on").siblings().removeClass("on");
+        })     
+    </script>

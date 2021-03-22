@@ -1,0 +1,52 @@
+<html>
+	<head><title>z-index</title></head>
+	<style>
+	  div {
+		
+		width: 100px;
+		height: 100px;
+		border: 3px solid black;
+		background: pink;
+	  }
+	  .first-box {
+		position: relative;
+		left: 200px;
+		top: 200px;
+		z-index: 2;
+	  }
+	  .second-box {
+		z-index: 100;
+		margin-top: -30px;
+		margin-left: -20px;
+	  }
+	    header {
+	      position: relative;
+	      z-index: 2;
+	    }
+	    .tooltip {
+	      position: absolute;
+	      z-index: 999999;
+	    }
+	    main {
+	      position: relative;
+	      z-index: 1;
+	    }
+</style>
+	<body>
+		<section>
+				<div class="first-box"></div>
+		<div class="second-box"></div>
+		</section>
+	<section>
+		<header>
+		  My Cool Site
+		</header>
+		<main>
+		  <div class="tooltip">
+		    A tooltip
+		  </div>
+		  <p>Some main content</p>
+		</main>
+	</section>
+	</body>
+</html>
